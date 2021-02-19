@@ -3,19 +3,23 @@ import { View, Text, StyleSheet } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 
+import { useNavigation } from '@react-navigation/native'
+
 import New from '../components/New';
 
 export default function Home() {
+  const navigation = useNavigation()
+
   return (
     <ScrollView
-    showsVerticalScrollIndicator={false}
-    style={{backgroundColor: '#FFF'}}
+      showsVerticalScrollIndicator={false}
+      style={{ backgroundColor: '#FFF'}}
     >
 
       <View style={styles.header}>
         <View style={styles.inputArea}>
-          <Feather name="search" size={24} color="black"/>
-          <TextInput placeholder="O que está procurando?" style={styles.input}/>
+          <Feather name="search" size={24} color="black" />
+          <TextInput placeholder="O que está procurando?" style={styles.input} />
         </View>
       </View>
 
@@ -23,20 +27,36 @@ export default function Home() {
         <Text style={styles.title}>Novidades</Text>
       </View>
 
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ paddingHorizontal: 15,}}>
-          <New
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ paddingHorizontal: 15, }}>
+        <New
           cover={require('../assets/house1.jpg')}
           name="Casa de Praia"
           description="Casa nova uma quadra do mar, lugar seguro e monitorado 24hrs"
-          onPress={() => {}}/>
-        </ScrollView>
+          price="R$1.204,39"
+          onPress={() => navigation.navigate('Detail')}
+        />
+        <New
+          cover={require('../assets/house2.jpg')}
+          name="Casa Floripa"
+          description="Casa nova, só falta o morador"
+          price="R$2.000,00"
+          onPress={() => { }}
+        />
+        <New
+          cover={require('../assets/house3.jpg')}
+          name="Home Deluxe"
+          description="Casa nova uma quadra do mar, lugar seguro e monitorado 24hrs"
+          price="R$5.000,00"
+          onPress={() => { }}
+        />
+      </ScrollView>
 
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  header:{
+  header: {
     paddingHorizontal: 15,
     flexDirection: 'row',
     alignItems: 'center',
@@ -45,7 +65,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 
-  inputArea:{
+  inputArea: {
     paddingHorizontal: 15,
     flexDirection: 'row',
     alignItems: 'center',
@@ -56,18 +76,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 10,
   },
-  input:{
+  input: {
     fontFamily: 'Montserrat_500Medium',
     paddingHorizontal: 10,
     fontSize: 13,
     width: '98%'
   },
-  contentNew:{
+  contentNew: {
     flexDirection: 'row',
     width: '100%',
     alignItems: 'center'
   },
-  title:{
+  title: {
     paddingHorizontal: 15,
     fontFamily: 'Montserrat_700Bold',
     fontSize: 18,
